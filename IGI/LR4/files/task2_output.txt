@@ -1,0 +1,14 @@
+All sentence count: 24
+Affirmative sentence count: 20
+Interrogative sentence count: 0
+Exclamatory sentence count: 4
+Average sentence length: 6.541666666666667
+Average word length: 3.9363057324840764
+Smiles count: 0
+Updated text:
+My3name3is3John3Hi!3Nice3to3meet3you!3My3name3is3John3Smith.3I3am3193and3a3student3in3college.3I3go3to3college3in3New3York.3My3favorite3courses3are3Geometry,3French,3and3History.3English3is3my3hardest3course.3My3professors3are3very3friendly3and3smart.3It’s3my3second3year3in3college3now.3I3love3it!3I3live3in3a3big3house3on3Ivy3Street.3It’s3near3the3collezge3campus.3I3share3the3house3with3three3other3students.3Their3names3are3Bill,3Tony,3and3Paul.3We3help3each3other3with3homework.3On3the3weekend,3we3play3football3together.3I3have3a3younger3brother.3He3just3started3high3school.3He3is3143and3lives3with3my3parents.3They3live3on3Mulberry3Street3in3Boston.3Sometimes3they3visit3me3in3New3York.3I3am3happy3when3they3visit.3My3Mom3always3brings3me3sweets3and3candy3when3they3come.3I3really3miss3them,3too!
+String is NOT GUID
+Capital letters count: 44
+First z-word: collezge
+Updated 2 text:
+My name is John Hi! Nice to meet you! My name is John Smith. I 19 a student in college. I go to college in New York. My favorite courses Geometry, French, History. English is my hardest course. My professors very friendly smart. It’s my second year in college now. I love it! I live in a big house on Ivy Street. It’s near the collezge campus. I share the house with three other students. Their names Bill, Tony, Paul. We help each other with homework. On the weekend, we play football together. I have a younger brother. He just started high school. He is 14 lives with my parents. They live on Mulberry Street in Boston. Sometimes they visit me in New York. I happy when they visit. My Mom brings me sweets candy when they come. I really miss them, too!
