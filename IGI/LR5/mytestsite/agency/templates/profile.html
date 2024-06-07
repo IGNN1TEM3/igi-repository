@@ -1,0 +1,78 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Profile</title>
+{% endblock %}
+
+{% block content %}
+<h1>Profile</h1>
+<hr/>
+<p>Firstname: {{ client.first_name }}</p>
+<p>Lastname: {{ client.last_name }}</p>
+<p>Phone: {{client.belarus_phone_number}}</p>
+<p>Ip: {{ip}}/{{country}}</p>
+<h3>Promo Codes</h3>
+<form id="promo-code-form" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Apply</button>
+</form>
+<ul>
+    {% for promo_code in promo_codes %}
+    <li>{{ promo_code}}</li>
+    {% endfor %}
+</ul>
+<hr/>
+<h2>Orders</h2>
+{% if orders %}
+<table class="orders-table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Package Name</th>
+        <th>Country</th>
+        <th>Hotel</th>
+        <th>Departure Date</th>
+        <th>Durations</th>
+        <th>Price</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ order.package.name }}</td>
+        <td>{{ order.package.country.name }}</td>
+        <td>{{order.package.hotel}} | Rating:{{order.package.hotel.rating}} | Address:{{order.package.hotel.address}}</td>
+        <td>{{ order.departure_date }}</td>
+        <td>{{order.package.duration_days}} d.</td>
+        <td>{{order.final_price}}</td>
+        <td>{{ order.get_status_display }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No orders found.</p>
+{% endif %}
+<style>
+    .orders-table {
+        width: auto;
+        border-collapse: collapse;
+    }
+    .orders-table th, .orders-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .orders-table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #f2f2f2;
+    }
+</style>
+
+{% endblock %}
+
+

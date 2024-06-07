@@ -1,0 +1,100 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h2>Find the tour u want</h2>
+<form method="post">
+    {% csrf_token %}
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-field">
+            {{ form.country }}
+        </div>
+        <div class="form-field">
+            {{ form.season }}
+        </div>
+        <div class="form-field">
+            {{ form.departure_date }}
+        </div>
+        <div class="form-field">
+            {{ form.tour_duration }}
+        </div>
+        <div class="form-field">
+            {{ form.num_people }}
+        </div>
+        <div class="form-field">
+            <button type="submit">SEARCH</button>
+        </div>
+    </div>
+</form>
+<canvas id="ordersChart" width="800" height="400"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = {{ country_labels|safe }};
+    const data = {{ country_data|safe }};
+
+    const ctx = document.getElementById('ordersChart').getContext('2d');
+    const ordersChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Number of Orders by Country',
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+
+        }
+    });
+</script>
+<script>
+    document.getElementById("id_season").readOnly = true;
+    document.addEventListener("DOMContentLoaded", function() {
+        const departureDateField = document.getElementById("id_departure_date");
+        const seasonField = document.getElementById("id_season");
+
+        // Функция для автоматического выбора сезона
+        function updateSeason() {
+            const departureDate = new Date(departureDateField.value);
+            const month = departureDate.getMonth() + 1;
+
+            // Выбор сезона в зависимости от месяца
+            if (month >= 1 && month <= 2 || month === 12) {
+                seasonField.value = "Winter";
+            } else if (month >= 3 && month <= 5) {
+                seasonField.value = "Spring";
+            } else if (month >= 6 && month <= 8) {
+                seasonField.value = "Summer";
+            } else if (month >= 9 && month <= 11) {
+                seasonField.value = "Autumn";
+            }
+        }
+
+        // Обновление сезона при изменении даты
+        departureDateField.addEventListener("change", updateSeason);
+
+        // Вызов функции при загрузке страницы
+        updateSeason();
+    });
+</script>
+<style>
+    .form-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-field {
+    margin-right: 10px; /* Расстояние между полями */
+}
+</style>
+<p>Promocodes</p>
+
+{% endblock %}

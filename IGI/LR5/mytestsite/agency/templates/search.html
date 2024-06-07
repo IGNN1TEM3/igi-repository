@@ -1,0 +1,64 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Travel Packages</title>
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <h1>Filters</h1>
+    <form method="get">
+        <label for="star_rating">Star Rating:</label>
+        <select name="star_rating" id="star_rating">
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+        </select>
+
+        <label for="min_price">Min Price:</label>
+        <input type="number" name="min_price" id="min_price" placeholder="Min Price">
+
+        <label for="max_price">Max Price:</label>
+        <input type="number" name="max_price" id="max_price" placeholder="Max Price">
+
+        <p>Sort by:</p>
+        <label>
+            <input type="radio" name="sort_order" value="asc">
+            Ascending
+        </label>
+        <label>
+            <input type="radio" name="sort_order" value="desc">
+            Descending
+        </label>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+</div>
+<div>
+    <h1>Travel Packages</h1>
+    <hr/>
+    <ul>
+        {% for package in packages %}
+        <li>
+            <h3><a href="{% url 'search_detail' package.pk %}">{{ package.name }}</a></h3>
+            <p>Hotel: {{ package.hotel.name }}</p>
+            <p>Country: {{ package.country.name }}</p>
+            <p>Duration: {{ package.duration_days }} days</p>
+            <p>Price: {{ package.intermediate_price }}</p>
+            <h4>Hotel Details</h4>
+            <p>Address: {{ package.hotel.address }}</p>
+            <p>Description: {{ package.hotel.description }}</p>
+            <p>Rating: {{ package.hotel.rating }}</p>
+            <p>Standard Room Price: {{ package.hotel.standard_room_price }}/d.</p>
+            <p>VIP Room Price: {{ package.hotel.vip_room_price }}/d.</p>
+            <hr/>
+            {% empty %}
+        <li>No packages found.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

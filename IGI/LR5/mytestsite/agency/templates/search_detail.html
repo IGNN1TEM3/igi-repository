@@ -1,0 +1,44 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Package Detail</title>
+{% endblock %}
+
+{% block content %}
+<h1>Package Detail</h1>
+<p>Hotel: {{ package.hotel.name }}</p>
+<p>Country: {{ package.country.name }}</p>
+<p>Duration: {{ package.duration_days }} days</p>
+<p>Departure date: {{departure_date}}</p>
+
+
+<p>Amount: {{num_people}}</p>
+<h2>Hotel Details</h2>
+<p>Address: {{ package.hotel.address }}</p>
+<p>Description: {{ package.hotel.description }}</p>
+<p>Rating: {{ package.hotel.rating }}</p>
+<p>Standard Room Price: {{ package.hotel.standard_room_price }}</p>
+<p>VIP Room Price: {{ package.hotel.vip_room_price }}</p>
+<h2>Country Climate</h2>
+{% if season == 'Winter' %}
+<p>{{ package.country.climate_winter }}</p>
+{% elif season == 'Spring' %}
+<p>{{ package.country.climate_spring }}</p>
+{% elif season == 'Summer' %}
+<p>{{ package.country.climate_summer }}</p>
+{% elif season == 'Autumn' %}
+<p>{{ package.country.climate_autumn }}</p>
+{% endif %}
+<h2>Price details</h2>
+<p>Package price: {{ package.intermediate_price }}</p>
+<p>Number of standart rooms: {{num_people}}</p>
+<p>Number of vip rooms: 0</p>
+<br/>
+<h4>Final Price: {{final_price}}</h4>
+{% if user.is_authenticated %}
+<form method="POST" action="{% url 'search_detail' pk=package.id %}">
+    {% csrf_token %}
+    <button type="submit">Buy</button>
+</form>
+{% endif %}
+{% endblock %}
